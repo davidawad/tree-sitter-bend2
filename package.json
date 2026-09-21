@@ -1,0 +1,35 @@
+{
+  "name": "tree-sitter-bend2",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for Bend 2, a dependently typed, affine, Python-shaped functional language",
+  "main": "bindings/node",
+  "keywords": [
+    "tree-sitter",
+    "bend",
+    "bend2",
+    "parser"
+  ],
+  "author": "David Awad <angrybohr@protonmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidawad/tree-sitter-bend2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.27.0"
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.bend",
+      "file-types": [
+        "bend"
+      ],
+      "highlights": "queries/bend2/highlights.scm"
+    }
+  ]
+}

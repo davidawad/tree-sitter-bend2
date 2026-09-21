@@ -1,0 +1,982 @@
+============================================================
+hello world with an annotated arithmetic call
+============================================================
+
+import Base
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print("Hello from Bend!")
+    IO.print(U32.show((6 * 7 : U32)))
+
+---
+
+(source_file
+  (import_statement
+    (identifier))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (string_literal)))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (annotated_expression
+                      (binary_expression
+                        (u32_literal)
+                        (u32_literal))
+                      (identifier))))))))))))
+
+============================================================
+parallel let recursion (pow2)
+============================================================
+
+import Base
+
+# 2^d via fork/join recursion: each half of the split runs as its own
+# task ("parallel let"), joined by the addition below. This is Bend's
+# headline feature -- ordinary-looking recursive code that the compiler
+# schedules across cores (or the GPU, with `!`) without you writing any
+# thread/task code yourself.
+def pow2(+d: Nat) -> U32:
+  match d:
+    case 0n:
+      1
+    case 1n+p:
+      a b = pow2(p) pow2(p)
+      (a + b : U32)
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print(U32.show(pow2(10n)))
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (comment))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (match_statement
+        (identifier)
+        (case_clause
+          (nat_zero_pattern)
+          (statement
+            (expression_statement
+              (u32_literal))))
+        (case_clause
+          (nat_succ_pattern
+            (nat_literal)
+            (identifier))
+          (statement
+            (parallel_let_statement
+              (identifier)
+              (identifier)
+              (call_expression
+                (identifier)
+                (argument
+                  (identifier)))
+              (call_expression
+                (identifier)
+                (argument
+                  (identifier)))))
+          (statement
+            (expression_statement
+              (annotated_expression
+                (binary_expression
+                  (identifier)
+                  (identifier))
+                (identifier))))))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (call_expression
+                      (identifier)
+                      (argument
+                        (nat_literal)))))))))))))
+
+============================================================
+datatype with match over constructors
+============================================================
+
+import Base
+
+# A datatype and a total match over it -- Bend has no `if`; branch by
+# matching constructors instead (`True{}`/`False{}` for booleans).
+type Shape is Data:
+  Circle{r: U32}
+  Square{s: U32}
+
+def area(shape: Shape) -> U32:
+  match shape:
+    case Circle{+r}:
+      (3 * r * r : U32)  # crude pi ~= 3 for an integer estimate
+    case Square{+s}:
+      (s * s : U32)
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print(U32.show(area(Square{6})))
+    IO.print(U32.show(area(Circle{4})))
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (comment)
+    (comment))
+  (type_declaration
+    (identifier)
+    (kind_type)
+    (constructor_definition
+      (identifier)
+      (field_definition
+        (identifier)
+        (identifier)))
+    (constructor_definition
+      (identifier)
+      (field_definition
+        (identifier)
+        (identifier))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (match_statement
+        (identifier)
+        (case_clause
+          (constructor_pattern
+            (identifier)
+            (field_pattern
+              (identifier)))
+          (statement
+            (expression_statement
+              (annotated_expression
+                (binary_expression
+                  (binary_expression
+                    (u32_literal)
+                    (identifier))
+                  (identifier))
+                (identifier)))
+            (comment)))
+        (case_clause
+          (constructor_pattern
+            (identifier)
+            (field_pattern
+              (identifier)))
+          (statement
+            (expression_statement
+              (annotated_expression
+                (binary_expression
+                  (identifier)
+                  (identifier))
+                (identifier))))))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (call_expression
+                      (identifier)
+                      (argument
+                        (constructor_expression
+                          (identifier)
+                          (field_argument
+                            (u32_literal)))))))))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (call_expression
+                      (identifier)
+                      (argument
+                        (constructor_expression
+                          (identifier)
+                          (field_argument
+                            (u32_literal)))))))))))))))
+
+============================================================
+arrays: literal, write, read-as-pair
+============================================================
+
+import Base
+
+# Array<T> is affine: at most one live owner, and a read hands back
+# the array *beside* the element. Destructuring a computed expression
+# directly is refused by the checker ("a match cannot scrutinize a
+# computed value") -- thread it into a helper whose PARAMETER is that
+# pair instead, same as this file's `cell`.
+def cell(a: Array<U32> & U32) -> U32:
+  (arr, v) = a
+  v
+
+# `a[i] <- v` on its own line implicitly rebinds `a` -- but only in a
+# plain statement sequence like this one, not inside a `do` block
+# (there, every line is a typed bind/let/step; build the array here
+# and hand `main` only the finished value).
+def build() -> U32:
+  arr = [0 : U32*8n]  # 8 slots (power of two), all zero
+  arr[0] <- 10
+  arr[1] <- 32
+  cell(arr[1])
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print(U32.show(build()))
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (comment))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (pair_type
+        (type_application
+          (identifier)
+          (identifier))
+        (identifier)))
+    (identifier)
+    (statement
+      (destructure_statement
+        (tuple_expression
+          (identifier)
+          (identifier))
+        (identifier)))
+    (statement
+      (expression_statement
+        (identifier))
+      (comment)
+      (comment)
+      (comment)
+      (comment)))
+  (def_declaration
+    (identifier)
+    (identifier)
+    (statement
+      (let_statement
+        (identifier)
+        (array_expression
+          (u32_literal)
+          (identifier)
+          (nat_literal)))
+      (comment))
+    (statement
+      (array_write_statement
+        (index_expression
+          (identifier)
+          (u32_literal))
+        (u32_literal)))
+    (statement
+      (array_write_statement
+        (index_expression
+          (identifier)
+          (u32_literal))
+        (u32_literal)))
+    (statement
+      (expression_statement
+        (call_expression
+          (identifier)
+          (argument
+            (index_expression
+              (identifier)
+              (u32_literal)))))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (call_expression
+                      (identifier))))))))))))
+
+============================================================
+list literal, templates via List.map/foldl
+============================================================
+
+import Base
+
+def double(x: U32) -> U32:
+  (x * 2 : U32)
+
+def add(a: U32, b: U32) -> U32:
+  (a + b : U32)
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    xs : List<U32> = [1, 2, 3, 4, 5]
+    doubled : List<U32> = List.map(~U32, ~U32, double, xs)
+    total : U32 = List.foldl(~&1, ~U32, ~U32, add, doubled, 0)
+    IO.print(U32.show(total))
+
+---
+
+(source_file
+  (import_statement
+    (identifier))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (expression_statement
+        (annotated_expression
+          (binary_expression
+            (identifier)
+            (u32_literal))
+          (identifier)))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (expression_statement
+        (annotated_expression
+          (binary_expression
+            (identifier)
+            (identifier))
+          (identifier)))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (do_let_statement
+          (identifier)
+          (type_application
+            (identifier)
+            (identifier))
+          (list_expression
+            (u32_literal)
+            (u32_literal)
+            (u32_literal)
+            (u32_literal)
+            (u32_literal)))
+        (do_let_statement
+          (identifier)
+          (type_application
+            (identifier)
+            (identifier))
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))))
+        (do_let_statement
+          (identifier)
+          (identifier)
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (quantity))
+            (argument
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (u32_literal))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (identifier)))))))))))
+
+============================================================
+law, proof by match, rewrite step
+============================================================
+
+import Base
+
+# Bend's headline feature: state an intent as a `law` (a claim, which
+# is itself just a type), then write a `def` of the same name that
+# proves it. The checker rejects the file if the proof doesn't
+# actually establish the claim -- this is what "blocks AI mistakes
+# via proof" means in practice, not marketing copy.
+
+law add_zero:
+  for x: Nat
+  {Nat.add(x, 0n) == x : Nat}
+
+def add_zero(x):              # unannotated: fills the law, inherits its type
+  match x:
+    case 0n:
+      {==}                     # base case: Nat.add(0n, 0n) reduces to 0n by computation
+    case 1n+p:
+      %add_zero(p) : {1n+Nat.add(p, 0n) == 1n+_ : Nat}   # rewrite using the inductive hypothesis
+      {==}
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print("add_zero proved for all Nat -- checked, not asserted")
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (comment))
+  (law_declaration
+    (identifier)
+    (for_clause
+      (identifier)
+      (identifier))
+    (claim_statement
+      (equality_type
+        (call_expression
+          (qualified_identifier
+            (identifier)
+            (identifier))
+          (argument
+            (identifier))
+          (argument
+            (nat_literal)))
+        (identifier)
+        (identifier))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier))
+    (statement
+      (match_statement
+        (identifier)
+        (case_clause
+          (nat_zero_pattern)
+          (statement
+            (expression_statement
+              (reflexivity))
+            (comment)))
+        (case_clause
+          (nat_succ_pattern
+            (nat_literal)
+            (identifier))
+          (statement
+            (expression_statement
+              (rewrite_expression
+                (call_expression
+                  (identifier)
+                  (argument
+                    (identifier)))
+                (equality_type
+                  (binary_expression
+                    (nat_literal)
+                    (call_expression
+                      (qualified_identifier
+                        (identifier)
+                        (identifier))
+                      (argument
+                        (identifier))
+                      (argument
+                        (nat_literal))))
+                  (binary_expression
+                    (nat_literal)
+                    (identifier))
+                  (identifier))))
+            (comment))
+          (statement
+            (expression_statement
+              (reflexivity)))))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (string_literal)))))))))
+
+============================================================
+nested block comments
+============================================================
+
+import Base
+
+#{ a single-line block comment #}
+
+#{
+  # a multi-line block comment
+  # every continuation line starts with '#'
+#}
+
+#{
+  #{
+    # nested block comment
+  #}
+#}
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print("block comments ok")
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (block_comment)
+    (block_comment)
+    (block_comment))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (string_literal)))))))))
+
+============================================================
+template param, @unsafe, tuple destructure, hole
+============================================================
+
+import Base
+
+# Template: `~f` is compile-time substituted and may be instantiated more
+# than once; `apply_twice` calls it twice on the same argument.
+def apply_twice(~f: U32 -> U32, x: U32) -> U32:
+  f(f(x))
+
+def inc(x: U32) -> U32:
+  (x + 1 : U32)
+
+@unsafe def spin(n: Nat) -> Nat:
+  match n:
+    case 0n:
+      0n
+    case 1n+p:
+      spin(1n+p)
+
+def swap(pair: U32 & U32) -> U32 & U32:
+  (a, b) = pair
+  (b, a)
+
+def render(pair: U32 & U32) -> String:
+  (x, y) = pair
+  U32.show(x) ++ U32.show(y)
+
+def show_swapped(pair: U32 & U32) -> String:
+  render(swap(pair))
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    IO.print(U32.show(apply_twice(inc, 5)))
+    IO.print(show_swapped((1, 2)))
+    ?TODO
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (comment)
+    (comment))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (function_type
+        (identifier)
+        (identifier)))
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (expression_statement
+        (call_expression
+          (identifier)
+          (argument
+            (call_expression
+              (identifier)
+              (argument
+                (identifier))))))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (expression_statement
+        (annotated_expression
+          (binary_expression
+            (identifier)
+            (u32_literal))
+          (identifier)))))
+  (def_declaration
+    (unsafe_annotation)
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (match_statement
+        (identifier)
+        (case_clause
+          (nat_zero_pattern)
+          (statement
+            (expression_statement
+              (nat_literal))))
+        (case_clause
+          (nat_succ_pattern
+            (nat_literal)
+            (identifier))
+          (statement
+            (expression_statement
+              (call_expression
+                (identifier)
+                (argument
+                  (binary_expression
+                    (nat_literal)
+                    (identifier))))))))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (pair_type
+        (identifier)
+        (identifier)))
+    (pair_type
+      (identifier)
+      (identifier))
+    (statement
+      (destructure_statement
+        (tuple_expression
+          (identifier)
+          (identifier))
+        (identifier)))
+    (statement
+      (expression_statement
+        (tuple_expression
+          (identifier)
+          (identifier)))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (pair_type
+        (identifier)
+        (identifier)))
+    (identifier)
+    (statement
+      (destructure_statement
+        (tuple_expression
+          (identifier)
+          (identifier))
+        (identifier)))
+    (statement
+      (expression_statement
+        (binary_expression
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (identifier)))
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (identifier)))))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (pair_type
+        (identifier)
+        (identifier)))
+    (identifier)
+    (statement
+      (expression_statement
+        (call_expression
+          (identifier)
+          (argument
+            (call_expression
+              (identifier)
+              (argument
+                (identifier))))))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (qualified_identifier
+                    (identifier)
+                    (identifier))
+                  (argument
+                    (call_expression
+                      (identifier)
+                      (argument
+                        (identifier))
+                      (argument
+                        (u32_literal)))))))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (call_expression
+                  (identifier)
+                  (argument
+                    (tuple_expression
+                      (u32_literal)
+                      (u32_literal))))))))
+        (expression_statement_line
+          (expression_statement
+            (hole
+              (identifier))))))))
+
+============================================================
+foreign effect def (two string imports)
+============================================================
+
+# Skeleton: a custom effect (from `bend guide effects`). The def's body is
+# two imports; the host function is the def's name lowercased with dots
+# as underscores. Try:
+#   bend main.bend -o clock && ./clock
+#   bend main.bend -o clock_program.js && bun clock_program.js
+#   bend main.bend
+import Base
+
+def Clock.now() -> IO(U32):
+  import "./clock.c"
+  import "./clock.js"
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    t : U32 <- Clock.now()
+    IO.print("clock ms: " ++ U32.show(t))
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (import_statement
+    (identifier))
+  (def_declaration
+    (qualified_identifier
+      (identifier)
+      (identifier))
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (foreign_import_statement_inline
+        (string_literal)))
+    (statement
+      (foreign_import_statement_inline
+        (string_literal))))
+  (def_declaration
+    (identifier)
+    (type_call_application
+      (identifier)
+      (identifier))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (bind_statement
+          (identifier)
+          (identifier)
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (binary_expression
+                  (string_literal)
+                  (call_expression
+                    (qualified_identifier
+                      (identifier)
+                      (identifier))
+                    (argument
+                      (identifier))))))))))))

@@ -1,0 +1,17 @@
+# Compiled parser artifacts -- consumers build these; only the generated
+# src/*.c, src/*.json and src/*.h sources are committed.
+parser/
+*.so
+*.dylib
+*.dll
+*.wasm
+*.o
+
+# Node / npm (tree-sitter-cli tooling only)
+node_modules/
+
+# Linked git worktrees created during development
+.worktrees/
+
+# Editor / OS cruft
+.DS_Store
