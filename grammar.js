@@ -75,6 +75,9 @@ module.exports = grammar({
   // trying both and discarding whichever fails to parse further.
   conflicts: $ => [
     [$.parallel_let_statement, $._term],
+    [$.lambda_expression],
+    [$._type_argument, $.binary_expression],
+    [$._term, $.type_application],
   ],
 
   rules: {
@@ -159,7 +162,7 @@ module.exports = grammar({
     type_declaration: $ => seq(
       'type', field('name', $.identifier),
       optional($.type_parameters),
-      optional(seq('is', field('kind', $._type))),
+      optional(seq('is', field('kind', $._term))),
       ':',
       block($, $.constructor_definition),
     ),
@@ -171,7 +174,7 @@ module.exports = grammar({
     type_parameter: $ => seq(
       optional(choice('-', '+')),
       field('name', $.identifier),
-      optional(seq(':', field('bound', $._type))),
+      optional(seq(':', field('bound', $._term))),
     ),
 
     constructor_definition: $ => seq(
@@ -181,7 +184,7 @@ module.exports = grammar({
     ),
 
     field_definition: $ => seq(
-      field('name', $.identifier), ':', field('type', $._type),
+      field('name', $.identifier), ':', field('type', $._term),
     ),
 
     // ---------------------------------------------------------------
@@ -192,7 +195,7 @@ module.exports = grammar({
       optional($.unsafe_annotation),
       'def', field('name', $._name),
       '(', commaSep($.parameter), ')',
-      optional(seq('->', field('return_type', $._type))),
+      optional(seq('->', field('return_type', $._term))),
       ':',
       block($, $._def_body_item),
     ),
@@ -200,7 +203,7 @@ module.exports = grammar({
     parameter: $ => seq(
       optional(field('quantity', choice('-', '+', '~'))),
       field('name', $.identifier),
-      optional(seq(':', field('type', $._type))),
+      optional(seq(':', field('type', $._term))),
     ),
 
     _def_body_item: $ => choice($.statement, $.foreign_import_statement),
@@ -220,17 +223,17 @@ module.exports = grammar({
 
     for_clause: $ => seq(
       'for', optional(field('quantity', choice('-', '+', '~'))),
-      field('name', $.identifier), ':', field('type', $._type),
+      field('name', $.identifier), ':', field('type', $._term),
       optional(seq('where', field('condition', $._term))),
       $._nl,
     ),
 
     exs_clause: $ => seq(
-      'exs', field('name', $.identifier), ':', field('type', $._type),
+      'exs', field('name', $.identifier), ':', field('type', $._term),
       $._nl,
     ),
 
-    claim_statement: $ => seq($._type, $._nl),
+    claim_statement: $ => seq($._term, $._nl),
 
     // ---------------------------------------------------------------
     // Statements (inside a def / case / do / lambda body)
@@ -265,7 +268,7 @@ module.exports = grammar({
     let_statement: $ => prec(2, seq(
       optional(field('quantity', choice('+', '-'))),
       field('name', $.identifier),
-      optional(seq(':', field('type', $._type))),
+      optional(seq(':', field('type', $._term))),
       '=',
       field('value', $._term),
     )),
@@ -311,7 +314,7 @@ module.exports = grammar({
     // ---------------------------------------------------------------
 
     do_statement: $ => seq(
-      'do', field('monad', $._type), ':',
+      'do', field('monad', $._term), ':',
       block($, $._do_line),
     ),
 
@@ -323,12 +326,12 @@ module.exports = grammar({
     ),
 
     bind_statement: $ => seq(
-      field('name', $.identifier), ':', field('type', $._type), '<-',
+      field('name', $.identifier), ':', field('type', $._term), '<-',
       field('value', $._term), $._nl,
     ),
 
     do_let_statement: $ => prec(2, seq(
-      field('name', $.identifier), ':', field('type', $._type), '=',
+      field('name', $.identifier), ':', field('type', $._term), '=',
       field('value', $._term), $._nl,
     )),
 
@@ -386,30 +389,15 @@ module.exports = grammar({
     // Types
     // ---------------------------------------------------------------
 
-    _type: $ => choice(
-      $._name,
-      $.quantity,
-      $.nat_literal,
-      $.u32_literal,
-      $.hole,
-      $.type_application,
-      $.type_call_application,
-      $.reusable_type,
-      $.function_type,
-      $.dependent_function_type,
-      $.pair_type,
-      $.dependent_pair_type,
-      $.either_type,
-      $.equality_type,
-      $.inequality_type,
-      $.paren_type,
-      $.kind_type,
-      $.min_quantity_type,
-    ),
+    // Types are terms in Bend 2's unified universe (`List<&2, String>` and
+    // `Socket & String` appear as ordinary call arguments), so there is no
+    // separate `_type` rule: the type-only forms below are members of `_term`.
 
-    type_application: $ => prec(PREC.CALL, seq(
+    type_application: $ => prec.dynamic(-1, seq(
       field('name', $._name), '<', commaSep1($._type_argument), '>',
     )),
+
+    _type_argument: $ => prec(PREC.CMP, $._term),
 
     // `IO(Unit)` -- a type constructor applied via ordinary call syntax
     // rather than `<...>`. Confirmed against real Bend 2 source: the same
@@ -417,57 +405,46 @@ module.exports = grammar({
     // `IO<Unit>` (a `do` block header) across the verified example corpus.
     // Bend's types are terms in its unified universe, so this reuses
     // `call_expression` itself rather than a parallel rule.
-    type_call_application: $ => prec(PREC.CALL, seq(
-      field('name', $._name), '(', commaSep1($._type_argument), ')',
-    )),
-
-    _type_argument: $ => $._type,
 
     // `+D<A>` -- a leading `+` makes a datatype application reusable.
-    reusable_type: $ => prec(PREC.UNARY_GLUED, seq('+', $._type)),
+    reusable_type: $ => prec(PREC.UNARY_GLUED, seq('+', $._term)),
 
     function_type: $ => prec.right(PREC.ARROW, seq(
-      field('domain', $._type), '->', field('codomain', $._type),
+      field('domain', $._term), '->', field('codomain', $._term),
     )),
 
     dependent_function_type: $ => prec.right(PREC.ARROW, seq(
-      '@', optional('-'), field('name', $.identifier), ':', field('domain', $._type),
-      '->', field('codomain', $._type),
+      '@', optional('-'), field('name', $.identifier), ':', field('domain', $._term),
+      '->', field('codomain', $._term),
     )),
 
     pair_type: $ => prec.left(PREC.TYPE_PAIR, seq(
-      field('left', $._type), '&', field('right', $._type),
+      field('left', $._term), '&', field('right', $._term),
     )),
 
     dependent_pair_type: $ => prec.right(PREC.ARROW, seq(
-      '&', field('name', $.identifier), ':', field('domain', $._type),
-      '->', field('codomain', $._type),
+      '&', field('name', $.identifier), ':', field('domain', $._term),
+      '->', field('codomain', $._term),
     )),
 
     either_type: $ => prec.left(PREC.TYPE_PAIR, seq(
-      field('left', $._type), '|', field('right', $._type),
+      field('left', $._term), '|', field('right', $._term),
     )),
 
     equality_type: $ => seq(
       '{', field('left', $._term), '==', field('right', $._term),
-      ':', field('type', $._type), '}',
+      ':', field('type', $._term), '}',
     ),
 
     inequality_type: $ => seq(
       '{', field('left', $._term), '!=', field('right', $._term),
-      ':', field('type', $._type), '}',
+      ':', field('type', $._term), '}',
     ),
-
-    paren_type: $ => seq('(', $._type, ')'),
 
     kind_type: $ => choice(
       'Type', 'Data', 'Quant',
-      seq('Kind', '(', $._type, ')'),
+      seq('Kind', '(', $._term, ')'),
     ),
-
-    min_quantity_type: $ => prec.left(PREC.CMP, seq(
-      field('left', $._type), '<&>', field('right', $._type),
-    )),
 
     // ---------------------------------------------------------------
     // Terms
@@ -495,6 +472,16 @@ module.exports = grammar({
       $.index_expression,
       $.rewrite_expression,
       $.binary_expression,
+      $.type_application,
+      $.reusable_type,
+      $.function_type,
+      $.dependent_function_type,
+      $.pair_type,
+      $.dependent_pair_type,
+      $.either_type,
+      $.equality_type,
+      $.inequality_type,
+      $.kind_type,
     ),
 
     reflexivity: $ => '{==}',
@@ -502,7 +489,7 @@ module.exports = grammar({
     list_expression: $ => seq('[', commaSep($._term), ']'),
 
     array_expression: $ => seq(
-      '[', field('value', $._term), ':', field('type', $._type),
+      '[', field('value', $._term), ':', field('type', $._term),
       choice(seq('*', field('count', $._term)), seq('^', field('depth', $._term))),
       ']',
     ),
@@ -513,7 +500,7 @@ module.exports = grammar({
 
     paren_expression: $ => seq('(', $._term, ')'),
 
-    annotated_expression: $ => seq('(', $._term, ':', $._type, ')'),
+    annotated_expression: $ => seq('(', $._term, ':', $._term, ')'),
 
     constructor_expression: $ => prec(1, seq(
       field('name', $._name), '{', commaSep($.field_argument), '}',
@@ -545,7 +532,7 @@ module.exports = grammar({
     // the block (ordinary statement sequencing, no literal `;`).
     rewrite_expression: $ => prec.right(seq(
       '%', optional(seq(field('label', $.identifier), '@')),
-      field('witness', $._term), ':', field('motive', $._type),
+      field('witness', $._term), ':', field('motive', $._term),
       optional(seq(';', field('body', $._term))),
     )),
 
@@ -557,7 +544,12 @@ module.exports = grammar({
       prec.left(PREC.BITOR, seq($._term, '.|.', $._term)),
       prec.left(PREC.BITXOR, seq($._term, '.^.', $._term)),
       prec.left(PREC.BITAND, seq($._term, '.&.', $._term)),
-      prec.left(PREC.SHIFT, seq($._term, choice('<<', '>>'), $._term)),
+      prec.left(PREC.SHIFT, seq($._term, '<<', $._term)),
+      // NOTE: the right shift `>>` is deliberately NOT a token: nested type
+      // applications (`List<&2, Maybe<&1, A>>`) must close with two plain `>`
+      // tokens, and the lexer cannot tell the two uses apart. Known
+      // limitation (dot-1mwd6g): `(x >> 4n)` does not parse.
+      // prec.left(PREC.SHIFT, seq($._term, '>>', $._term)),
       prec.left(PREC.ADD, seq($._term, choice('+', '-'), $._term)),
       prec.left(PREC.MUL, seq($._term, choice('*', '/', '%'), $._term)),
       prec.left(PREC.CMP, seq($._term, '<&>', $._term)),

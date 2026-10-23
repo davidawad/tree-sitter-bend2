@@ -59,3 +59,75 @@ def f():
             (identifier))
           (argument
             (identifier)))))))
+
+================================================================================
+type applications as call arguments and nested closers
+================================================================================
+def f(xs: List<&2, String>) -> IO(Socket & Result<&1, &1, U32, List<&2, U32>>):
+  Bool.pick(List<&2, String>, a < b, [], [])
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (type_application
+        (identifier)
+        (quantity)
+        (identifier)))
+    (call_expression
+      (identifier)
+      (argument
+        (pair_type
+          (identifier)
+          (type_application
+            (identifier)
+            (quantity)
+            (quantity)
+            (identifier)
+            (type_application
+              (identifier)
+              (quantity)
+              (identifier))))))
+    (statement
+      (expression_statement
+        (call_expression
+          (qualified_identifier
+            (identifier)
+            (identifier))
+          (argument
+            (type_application
+              (identifier)
+              (quantity)
+              (identifier)))
+          (argument
+            (binary_expression
+              (identifier)
+              (identifier)))
+          (argument
+            (list_expression))
+          (argument
+            (list_expression)))))))
+
+================================================================================
+comparison is not a type application
+================================================================================
+def f():
+  a < b && c > d
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (statement
+      (expression_statement
+        (binary_expression
+          (binary_expression
+            (identifier)
+            (identifier))
+          (binary_expression
+            (identifier)
+            (identifier)))))))

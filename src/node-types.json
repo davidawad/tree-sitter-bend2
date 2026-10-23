@@ -88,10 +88,6 @@
           "named": true
         },
         {
-          "type": "min_quantity_type",
-          "named": true
-        },
-        {
           "type": "nat_literal",
           "named": true
         },
@@ -101,10 +97,6 @@
         },
         {
           "type": "paren_expression",
-          "named": true
-        },
-        {
-          "type": "paren_type",
           "named": true
         },
         {
@@ -137,10 +129,6 @@
         },
         {
           "type": "type_application",
-          "named": true
-        },
-        {
-          "type": "type_call_application",
           "named": true
         },
         {
@@ -183,7 +171,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -203,6 +211,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -212,6 +228,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -231,6 +251,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -240,6 +264,10 @@
         },
         {
           "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -282,7 +310,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -302,6 +350,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -311,6 +367,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -330,6 +390,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -339,6 +403,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -376,7 +444,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -396,6 +484,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -405,6 +501,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -424,6 +524,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -436,6 +540,10 @@
             "named": true
           },
           {
+            "type": "type_application",
+            "named": true
+          },
+          {
             "type": "u32_literal",
             "named": true
           }
@@ -445,6 +553,30 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
           {
             "type": "dependent_function_type",
             "named": true
@@ -462,7 +594,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -474,6 +614,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -482,7 +626,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -494,7 +642,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -506,15 +654,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -552,7 +712,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -572,6 +752,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -581,6 +769,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -600,6 +792,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -609,6 +805,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -662,7 +862,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -682,6 +902,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -691,6 +919,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -710,6 +942,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -719,6 +955,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -762,7 +1002,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -782,6 +1042,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -791,6 +1059,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -810,6 +1082,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -819,6 +1095,10 @@
         },
         {
           "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -847,6 +1127,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -863,7 +1167,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -875,6 +1187,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -883,7 +1199,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -895,7 +1215,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -907,15 +1227,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -953,7 +1285,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -973,6 +1325,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -982,6 +1342,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -1001,6 +1365,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -1010,6 +1378,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -1083,7 +1455,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -1103,6 +1495,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -1112,6 +1512,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -1131,6 +1535,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -1140,6 +1548,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -1231,6 +1643,30 @@
       "required": true,
       "types": [
         {
+          "type": "annotated_expression",
+          "named": true
+        },
+        {
+          "type": "array_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
+        {
           "type": "dependent_function_type",
           "named": true
         },
@@ -1247,7 +1683,15 @@
           "named": true
         },
         {
+          "type": "float_literal",
+          "named": true
+        },
+        {
           "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "gpu_call_expression",
           "named": true
         },
         {
@@ -1259,6 +1703,10 @@
           "named": true
         },
         {
+          "type": "index_expression",
+          "named": true
+        },
+        {
           "type": "inequality_type",
           "named": true
         },
@@ -1267,7 +1715,11 @@
           "named": true
         },
         {
-          "type": "min_quantity_type",
+          "type": "lambda_expression",
+          "named": true
+        },
+        {
+          "type": "list_expression",
           "named": true
         },
         {
@@ -1279,7 +1731,7 @@
           "named": true
         },
         {
-          "type": "paren_type",
+          "type": "paren_expression",
           "named": true
         },
         {
@@ -1291,15 +1743,27 @@
           "named": true
         },
         {
+          "type": "reflexivity",
+          "named": true
+        },
+        {
           "type": "reusable_type",
           "named": true
         },
         {
-          "type": "type_application",
+          "type": "rewrite_expression",
           "named": true
         },
         {
-          "type": "type_call_application",
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -1516,6 +1980,30 @@
         "required": false,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -1532,7 +2020,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -1544,6 +2040,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -1552,7 +2052,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -1564,7 +2068,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -1576,15 +2080,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -1626,6 +2142,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -1642,7 +2182,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -1654,6 +2202,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -1662,7 +2214,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -1674,7 +2230,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -1686,15 +2242,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -1708,6 +2276,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -1724,7 +2316,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -1736,6 +2336,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -1744,7 +2348,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -1756,7 +2364,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -1768,15 +2376,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -1806,6 +2426,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -1822,7 +2466,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -1834,6 +2486,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -1842,7 +2498,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -1854,7 +2514,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -1866,15 +2526,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -1888,6 +2560,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -1904,7 +2600,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -1916,6 +2620,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -1924,7 +2632,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -1936,7 +2648,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -1948,15 +2660,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2024,7 +2748,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2044,6 +2788,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -2053,6 +2805,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -2072,6 +2828,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -2081,6 +2841,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2110,6 +2874,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -2126,7 +2914,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -2138,6 +2934,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -2146,7 +2946,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -2158,7 +2962,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -2170,15 +2974,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2216,7 +3032,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2236,6 +3072,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -2245,6 +3089,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -2264,6 +3112,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -2273,6 +3125,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2292,6 +3148,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -2308,7 +3188,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -2320,6 +3208,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -2328,7 +3220,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -2340,7 +3236,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -2352,15 +3248,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2402,6 +3310,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -2418,7 +3350,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -2430,6 +3370,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -2438,7 +3382,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -2450,7 +3398,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -2462,15 +3410,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2484,6 +3444,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -2500,7 +3484,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -2512,6 +3504,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -2520,7 +3516,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -2532,7 +3532,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -2544,15 +3544,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2596,7 +3608,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2616,6 +3648,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -2625,6 +3665,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -2644,6 +3688,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -2653,6 +3701,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2690,7 +3742,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2710,6 +3782,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -2719,6 +3799,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -2738,6 +3822,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -2750,6 +3838,10 @@
             "named": true
           },
           {
+            "type": "type_application",
+            "named": true
+          },
+          {
             "type": "u32_literal",
             "named": true
           }
@@ -2759,6 +3851,30 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
           {
             "type": "dependent_function_type",
             "named": true
@@ -2776,7 +3892,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -2788,6 +3912,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -2796,7 +3924,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -2808,7 +3940,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -2820,15 +3952,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -2872,7 +4016,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -2892,6 +4056,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -2901,6 +4073,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -2920,6 +4096,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -2929,6 +4109,10 @@
         },
         {
           "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -2972,6 +4156,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -2988,7 +4196,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -3000,6 +4216,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -3008,7 +4228,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -3020,7 +4244,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -3032,15 +4256,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3084,7 +4320,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -3104,6 +4360,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -3113,6 +4377,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -3132,6 +4400,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -3141,6 +4413,10 @@
         },
         {
           "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -3169,6 +4445,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -3185,7 +4485,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -3197,6 +4505,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -3205,7 +4517,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -3217,7 +4533,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -3229,15 +4545,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3300,7 +4628,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -3320,6 +4668,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -3329,6 +4685,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -3348,6 +4708,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -3357,6 +4721,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3398,6 +4766,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -3414,7 +4806,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -3426,6 +4826,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -3434,7 +4838,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -3446,7 +4854,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -3458,15 +4866,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3517,6 +4937,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -3533,7 +4977,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -3545,6 +4997,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -3553,7 +5009,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -3565,7 +5025,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -3577,15 +5037,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3599,6 +5071,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -3615,7 +5111,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -3627,6 +5131,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -3635,7 +5143,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -3647,7 +5159,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -3659,15 +5171,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3711,7 +5235,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -3731,6 +5275,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -3740,6 +5292,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -3759,6 +5315,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -3768,6 +5328,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3878,7 +5442,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -3898,6 +5482,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -3907,6 +5499,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -3926,6 +5522,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -3935,6 +5535,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -3972,7 +5576,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -3992,6 +5616,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -4001,6 +5633,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -4020,6 +5656,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -4029,6 +5669,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -4072,7 +5716,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -4092,6 +5756,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -4101,6 +5773,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -4120,6 +5796,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -4129,6 +5809,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -4166,7 +5850,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -4186,6 +5890,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -4195,6 +5907,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -4214,6 +5930,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -4226,6 +5946,10 @@
             "named": true
           },
           {
+            "type": "type_application",
+            "named": true
+          },
+          {
             "type": "u32_literal",
             "named": true
           }
@@ -4235,6 +5959,30 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
           {
             "type": "dependent_function_type",
             "named": true
@@ -4252,7 +6000,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -4264,6 +6020,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -4272,7 +6032,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -4284,7 +6048,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -4296,15 +6060,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -4324,6 +6100,30 @@
       "required": false,
       "types": [
         {
+          "type": "annotated_expression",
+          "named": true
+        },
+        {
+          "type": "array_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
+        {
           "type": "dependent_function_type",
           "named": true
         },
@@ -4340,7 +6140,15 @@
           "named": true
         },
         {
+          "type": "float_literal",
+          "named": true
+        },
+        {
           "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "gpu_call_expression",
           "named": true
         },
         {
@@ -4352,6 +6160,10 @@
           "named": true
         },
         {
+          "type": "index_expression",
+          "named": true
+        },
+        {
           "type": "inequality_type",
           "named": true
         },
@@ -4360,7 +6172,11 @@
           "named": true
         },
         {
-          "type": "min_quantity_type",
+          "type": "lambda_expression",
+          "named": true
+        },
+        {
+          "type": "list_expression",
           "named": true
         },
         {
@@ -4372,7 +6188,7 @@
           "named": true
         },
         {
-          "type": "paren_type",
+          "type": "paren_expression",
           "named": true
         },
         {
@@ -4384,15 +6200,27 @@
           "named": true
         },
         {
+          "type": "reflexivity",
+          "named": true
+        },
+        {
           "type": "reusable_type",
           "named": true
         },
         {
-          "type": "type_application",
+          "type": "rewrite_expression",
           "named": true
         },
         {
-          "type": "type_call_application",
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -4435,7 +6263,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -4455,6 +6303,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -4464,6 +6320,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -4483,6 +6343,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -4492,6 +6356,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -4579,6 +6447,30 @@
         "required": false,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -4595,7 +6487,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -4607,6 +6507,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -4615,7 +6519,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -4627,7 +6535,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -4639,15 +6547,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -4685,7 +6605,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -4705,6 +6645,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -4714,6 +6662,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -4733,6 +6685,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -4742,6 +6698,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -4785,7 +6745,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -4805,6 +6785,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -4814,6 +6802,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -4833,6 +6825,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -4842,6 +6838,10 @@
         },
         {
           "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -4935,7 +6935,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -4955,6 +6975,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -4964,6 +6992,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -4983,6 +7015,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -4992,6 +7028,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -5010,176 +7050,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "min_quantity_type",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "dependent_function_type",
-            "named": true
-          },
-          {
-            "type": "dependent_pair_type",
-            "named": true
-          },
-          {
-            "type": "either_type",
-            "named": true
-          },
-          {
-            "type": "equality_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "hole",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "inequality_type",
-            "named": true
-          },
-          {
-            "type": "kind_type",
-            "named": true
-          },
-          {
-            "type": "min_quantity_type",
-            "named": true
-          },
-          {
-            "type": "nat_literal",
-            "named": true
-          },
-          {
-            "type": "pair_type",
-            "named": true
-          },
-          {
-            "type": "paren_type",
-            "named": true
-          },
-          {
-            "type": "qualified_identifier",
-            "named": true
-          },
-          {
-            "type": "quantity",
-            "named": true
-          },
-          {
-            "type": "reusable_type",
-            "named": true
-          },
-          {
-            "type": "type_application",
-            "named": true
-          },
-          {
-            "type": "type_call_application",
-            "named": true
-          },
-          {
-            "type": "u32_literal",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "dependent_function_type",
-            "named": true
-          },
-          {
-            "type": "dependent_pair_type",
-            "named": true
-          },
-          {
-            "type": "either_type",
-            "named": true
-          },
-          {
-            "type": "equality_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "hole",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "inequality_type",
-            "named": true
-          },
-          {
-            "type": "kind_type",
-            "named": true
-          },
-          {
-            "type": "min_quantity_type",
-            "named": true
-          },
-          {
-            "type": "nat_literal",
-            "named": true
-          },
-          {
-            "type": "pair_type",
-            "named": true
-          },
-          {
-            "type": "paren_type",
-            "named": true
-          },
-          {
-            "type": "qualified_identifier",
-            "named": true
-          },
-          {
-            "type": "quantity",
-            "named": true
-          },
-          {
-            "type": "reusable_type",
-            "named": true
-          },
-          {
-            "type": "type_application",
-            "named": true
-          },
-          {
-            "type": "type_call_application",
-            "named": true
-          },
-          {
-            "type": "u32_literal",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -5229,6 +7099,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -5245,7 +7139,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -5257,6 +7159,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -5265,7 +7171,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -5277,7 +7187,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -5289,15 +7199,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -5311,6 +7233,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -5327,7 +7273,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -5339,6 +7293,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -5347,7 +7305,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -5359,7 +7321,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -5371,15 +7333,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -5453,6 +7427,30 @@
         "required": false,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -5469,7 +7467,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -5481,6 +7487,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -5489,7 +7499,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -5501,7 +7515,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -5513,15 +7527,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -5565,7 +7591,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -5585,6 +7631,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -5594,6 +7648,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -5613,6 +7671,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -5625,90 +7687,7 @@
           "named": true
         },
         {
-          "type": "u32_literal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "paren_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "dependent_function_type",
-          "named": true
-        },
-        {
-          "type": "dependent_pair_type",
-          "named": true
-        },
-        {
-          "type": "either_type",
-          "named": true
-        },
-        {
-          "type": "equality_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "hole",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "inequality_type",
-          "named": true
-        },
-        {
-          "type": "kind_type",
-          "named": true
-        },
-        {
-          "type": "min_quantity_type",
-          "named": true
-        },
-        {
-          "type": "nat_literal",
-          "named": true
-        },
-        {
-          "type": "pair_type",
-          "named": true
-        },
-        {
-          "type": "paren_type",
-          "named": true
-        },
-        {
-          "type": "qualified_identifier",
-          "named": true
-        },
-        {
-          "type": "quantity",
-          "named": true
-        },
-        {
-          "type": "reusable_type",
-          "named": true
-        },
-        {
           "type": "type_application",
-          "named": true
-        },
-        {
-          "type": "type_call_application",
           "named": true
         },
         {
@@ -5771,7 +7750,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -5791,6 +7790,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -5800,6 +7807,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -5819,6 +7830,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -5828,6 +7843,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -5862,6 +7881,30 @@
       "required": true,
       "types": [
         {
+          "type": "annotated_expression",
+          "named": true
+        },
+        {
+          "type": "array_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
+        {
           "type": "dependent_function_type",
           "named": true
         },
@@ -5878,7 +7921,15 @@
           "named": true
         },
         {
+          "type": "float_literal",
+          "named": true
+        },
+        {
           "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "gpu_call_expression",
           "named": true
         },
         {
@@ -5890,6 +7941,10 @@
           "named": true
         },
         {
+          "type": "index_expression",
+          "named": true
+        },
+        {
           "type": "inequality_type",
           "named": true
         },
@@ -5898,7 +7953,11 @@
           "named": true
         },
         {
-          "type": "min_quantity_type",
+          "type": "lambda_expression",
+          "named": true
+        },
+        {
+          "type": "list_expression",
           "named": true
         },
         {
@@ -5910,7 +7969,7 @@
           "named": true
         },
         {
-          "type": "paren_type",
+          "type": "paren_expression",
           "named": true
         },
         {
@@ -5922,15 +7981,27 @@
           "named": true
         },
         {
+          "type": "reflexivity",
+          "named": true
+        },
+        {
           "type": "reusable_type",
           "named": true
         },
         {
-          "type": "type_application",
+          "type": "rewrite_expression",
           "named": true
         },
         {
-          "type": "type_call_application",
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -5973,7 +8044,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -5993,6 +8084,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -6002,6 +8101,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -6021,6 +8124,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -6030,6 +8137,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -6053,6 +8164,30 @@
         "required": true,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -6069,7 +8204,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -6081,6 +8224,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -6089,7 +8236,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -6101,7 +8252,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -6113,15 +8264,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -6159,7 +8322,27 @@
             "named": true
           },
           {
+            "type": "dependent_function_type",
+            "named": true
+          },
+          {
+            "type": "dependent_pair_type",
+            "named": true
+          },
+          {
+            "type": "either_type",
+            "named": true
+          },
+          {
+            "type": "equality_type",
+            "named": true
+          },
+          {
             "type": "float_literal",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -6179,6 +8362,14 @@
             "named": true
           },
           {
+            "type": "inequality_type",
+            "named": true
+          },
+          {
+            "type": "kind_type",
+            "named": true
+          },
+          {
             "type": "lambda_expression",
             "named": true
           },
@@ -6188,6 +8379,10 @@
           },
           {
             "type": "nat_literal",
+            "named": true
+          },
+          {
+            "type": "pair_type",
             "named": true
           },
           {
@@ -6207,6 +8402,10 @@
             "named": true
           },
           {
+            "type": "reusable_type",
+            "named": true
+          },
+          {
             "type": "rewrite_expression",
             "named": true
           },
@@ -6216,6 +8415,10 @@
           },
           {
             "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -6334,7 +8537,27 @@
           "named": true
         },
         {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
           "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
           "named": true
         },
         {
@@ -6354,6 +8577,14 @@
           "named": true
         },
         {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
           "type": "lambda_expression",
           "named": true
         },
@@ -6363,6 +8594,10 @@
         },
         {
           "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
           "named": true
         },
         {
@@ -6382,6 +8617,10 @@
           "named": true
         },
         {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
           "type": "rewrite_expression",
           "named": true
         },
@@ -6391,6 +8630,10 @@
         },
         {
           "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -6472,8 +8715,32 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
+        {
+          "type": "annotated_expression",
+          "named": true
+        },
+        {
+          "type": "array_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
         {
           "type": "dependent_function_type",
           "named": true
@@ -6491,7 +8758,15 @@
           "named": true
         },
         {
+          "type": "float_literal",
+          "named": true
+        },
+        {
           "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "gpu_call_expression",
           "named": true
         },
         {
@@ -6503,105 +8778,7 @@
           "named": true
         },
         {
-          "type": "inequality_type",
-          "named": true
-        },
-        {
-          "type": "kind_type",
-          "named": true
-        },
-        {
-          "type": "min_quantity_type",
-          "named": true
-        },
-        {
-          "type": "nat_literal",
-          "named": true
-        },
-        {
-          "type": "pair_type",
-          "named": true
-        },
-        {
-          "type": "paren_type",
-          "named": true
-        },
-        {
-          "type": "qualified_identifier",
-          "named": true
-        },
-        {
-          "type": "quantity",
-          "named": true
-        },
-        {
-          "type": "reusable_type",
-          "named": true
-        },
-        {
-          "type": "type_application",
-          "named": true
-        },
-        {
-          "type": "type_call_application",
-          "named": true
-        },
-        {
-          "type": "u32_literal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "type_call_application",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "qualified_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "dependent_function_type",
-          "named": true
-        },
-        {
-          "type": "dependent_pair_type",
-          "named": true
-        },
-        {
-          "type": "either_type",
-          "named": true
-        },
-        {
-          "type": "equality_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "hole",
-          "named": true
-        },
-        {
-          "type": "identifier",
+          "type": "index_expression",
           "named": true
         },
         {
@@ -6613,7 +8790,11 @@
           "named": true
         },
         {
-          "type": "min_quantity_type",
+          "type": "lambda_expression",
+          "named": true
+        },
+        {
+          "type": "list_expression",
           "named": true
         },
         {
@@ -6625,7 +8806,7 @@
           "named": true
         },
         {
-          "type": "paren_type",
+          "type": "paren_expression",
           "named": true
         },
         {
@@ -6637,15 +8818,27 @@
           "named": true
         },
         {
+          "type": "reflexivity",
+          "named": true
+        },
+        {
           "type": "reusable_type",
           "named": true
         },
         {
-          "type": "type_application",
+          "type": "rewrite_expression",
           "named": true
         },
         {
-          "type": "type_call_application",
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
           "named": true
         },
         {
@@ -6664,6 +8857,30 @@
         "required": false,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -6680,7 +8897,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -6692,6 +8917,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -6700,7 +8929,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -6712,7 +8945,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -6724,15 +8957,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -6776,6 +9021,30 @@
         "required": false,
         "types": [
           {
+            "type": "annotated_expression",
+            "named": true
+          },
+          {
+            "type": "array_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "constructor_expression",
+            "named": true
+          },
+          {
             "type": "dependent_function_type",
             "named": true
           },
@@ -6792,7 +9061,15 @@
             "named": true
           },
           {
+            "type": "float_literal",
+            "named": true
+          },
+          {
             "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "gpu_call_expression",
             "named": true
           },
           {
@@ -6804,6 +9081,10 @@
             "named": true
           },
           {
+            "type": "index_expression",
+            "named": true
+          },
+          {
             "type": "inequality_type",
             "named": true
           },
@@ -6812,7 +9093,11 @@
             "named": true
           },
           {
-            "type": "min_quantity_type",
+            "type": "lambda_expression",
+            "named": true
+          },
+          {
+            "type": "list_expression",
             "named": true
           },
           {
@@ -6824,7 +9109,7 @@
             "named": true
           },
           {
-            "type": "paren_type",
+            "type": "paren_expression",
             "named": true
           },
           {
@@ -6836,15 +9121,27 @@
             "named": true
           },
           {
+            "type": "reflexivity",
+            "named": true
+          },
+          {
             "type": "reusable_type",
             "named": true
           },
           {
-            "type": "type_application",
+            "type": "rewrite_expression",
             "named": true
           },
           {
-            "type": "type_call_application",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expression",
+            "named": true
+          },
+          {
+            "type": "type_application",
             "named": true
           },
           {
@@ -7029,10 +9326,6 @@
   },
   {
     "type": ">=",
-    "named": false
-  },
-  {
-    "type": ">>",
     "named": false
   },
   {

@@ -16,9 +16,10 @@ def main() -> IO(Unit):
     (identifier))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -122,9 +123,10 @@ def main() -> IO(Unit):
                 (identifier))))))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -229,9 +231,10 @@ def main() -> IO(Unit):
                 (identifier))))))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -371,9 +374,10 @@ def main() -> IO(Unit):
               (u32_literal)))))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -449,9 +453,10 @@ def main() -> IO(Unit):
           (identifier)))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -618,9 +623,10 @@ def main() -> IO(Unit):
               (reflexivity)))))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -668,9 +674,10 @@ def main() -> IO(Unit):
     (block_comment))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -859,9 +866,10 @@ def main() -> IO(Unit):
                 (identifier))))))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
@@ -939,9 +947,10 @@ def main() -> IO(Unit):
     (qualified_identifier
       (identifier)
       (identifier))
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (foreign_import_statement_inline
         (string_literal)))
@@ -950,9 +959,10 @@ def main() -> IO(Unit):
         (string_literal))))
   (def_declaration
     (identifier)
-    (type_call_application
+    (call_expression
       (identifier)
-      (identifier))
+      (argument
+        (identifier)))
     (statement
       (do_statement
         (type_application
