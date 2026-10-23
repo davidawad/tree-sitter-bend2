@@ -164,7 +164,7 @@ module.exports = grammar({
       optional($.type_parameters),
       optional(seq('is', field('kind', $._term))),
       ':',
-      block($, $.constructor_definition),
+      choice(block($, $.constructor_definition), $._nl),
     ),
 
     type_parameters: $ => choice(
@@ -310,7 +310,7 @@ module.exports = grammar({
 
     match_statement: $ => seq(
       'match', field('scrutinee', repeat1($._term)), ':',
-      block($, $.case_clause),
+      choice(block($, $.case_clause), $._nl),
     ),
 
     case_clause: $ => seq(
@@ -341,6 +341,7 @@ module.exports = grammar({
     ),
 
     do_let_statement: $ => prec(2, seq(
+      optional(field('quantity', choice('+', '-'))),
       field('name', $.identifier), ':', field('type', $._term), '=',
       field('value', $._term), $._nl,
     )),
@@ -358,6 +359,7 @@ module.exports = grammar({
       $.nat_succ_pattern,
       $.nat_succ_reusable_pattern,
       $.u32_pattern,
+      $.nat_pattern,
       $.char_pattern,
       $.string_pattern,
       $.constructor_pattern,
@@ -370,10 +372,11 @@ module.exports = grammar({
     wildcard_pattern: $ => '_',
     nat_zero_pattern: $ => '0n',
 
-    nat_succ_pattern: $ => prec(1, seq($.nat_literal, '+', optional(choice('+', '-')), $.identifier)),
+    nat_succ_pattern: $ => prec(1, seq($.nat_literal, '+', choice(seq(optional(choice('+', '-')), $.identifier), seq('(', optional(choice('+', '-')), $.identifier, ')')))),
     nat_succ_reusable_pattern: $ => prec(1, seq($.nat_literal, '++', $.identifier)),
 
     u32_pattern: $ => $.u32_literal,
+    nat_pattern: $ => $.nat_literal,
     char_pattern: $ => $.char_literal,
     string_pattern: $ => $.string_literal,
 
@@ -426,7 +429,7 @@ module.exports = grammar({
     )),
 
     dependent_function_type: $ => prec.right(PREC.ARROW, seq(
-      '@', optional('-'), field('name', $.identifier), ':', field('domain', $._term),
+      '@', optional(choice('-', '+', '~')), field('name', $.identifier), ':', field('domain', $._term),
       '->', field('codomain', $._term),
     )),
 

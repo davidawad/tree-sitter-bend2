@@ -1,0 +1,185 @@
+================================================================================
+continuation lines opening with an operator
+================================================================================
+law l:
+  for +x: Nat
+  for y: Nat
+    -> {f(x) == True{} : Bool}
+    -> {g(y) == True{} : Bool}
+  x
+
+def f() -> String:
+  "a"
+    ++ "b"
+    ++ "c"
+
+---
+
+(source_file
+  (law_declaration
+    (identifier)
+    (for_clause
+      (identifier)
+      (identifier))
+    (for_clause
+      (identifier)
+      (function_type
+        (identifier)
+        (function_type
+          (equality_type
+            (call_expression
+              (identifier)
+              (argument
+                (identifier)))
+            (constructor_expression
+              (identifier))
+            (identifier))
+          (equality_type
+            (call_expression
+              (identifier)
+              (argument
+                (identifier)))
+            (constructor_expression
+              (identifier))
+            (identifier)))))
+    (claim_statement
+      (identifier)))
+  (def_declaration
+    (identifier)
+    (identifier)
+    (statement
+      (expression_statement
+        (binary_expression
+          (string_literal)
+          (binary_expression
+            (string_literal)
+            (string_literal)))))))
+
+================================================================================
+empty type body and empty match
+================================================================================
+type Empty is Data:
+
+def f(+n: Never) -> U32:
+  match n:
+
+def g() -> U32:
+  1
+
+---
+
+(source_file
+  (type_declaration
+    (identifier)
+    (kind_type))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (match_statement
+        (identifier))))
+  (def_declaration
+    (identifier)
+    (identifier)
+    (statement
+      (expression_statement
+        (u32_literal)))))
+
+================================================================================
+nat patterns, dependent binders with quantity, quantified do let
+================================================================================
+def f(~t: @+c: Char -> Bool, +n: Nat) -> U32:
+  match n:
+    case 2n:
+      1
+    case 1n+(+p):
+      2
+    case 2n+more:
+      3
+    case other:
+      4
+
+def g() -> IO(Unit):
+  do IO<Unit>:
+    +cc : Enc.Cols = Enc.cols(ee, text)
+    IO.pure(cc)
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (dependent_function_type
+        (identifier)
+        (identifier)
+        (identifier)))
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (match_statement
+        (identifier)
+        (case_clause
+          (nat_pattern
+            (nat_literal))
+          (statement
+            (expression_statement
+              (u32_literal))))
+        (case_clause
+          (nat_succ_pattern
+            (nat_literal)
+            (identifier))
+          (statement
+            (expression_statement
+              (u32_literal))))
+        (case_clause
+          (nat_succ_pattern
+            (nat_literal)
+            (identifier))
+          (statement
+            (expression_statement
+              (u32_literal))))
+        (case_clause
+          (binder_pattern
+            (identifier))
+          (statement
+            (expression_statement
+              (u32_literal)))))))
+  (def_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (argument
+        (identifier)))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (do_let_statement
+          (identifier)
+          (qualified_identifier
+            (identifier)
+            (identifier))
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (identifier)))))))))

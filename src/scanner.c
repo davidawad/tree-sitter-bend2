@@ -163,6 +163,30 @@ static bool scan_block_comment_token(TSLexer *lexer) {
   return true;
 }
 
+// True when the line content at the lookahead begins with an operator that
+// can only continue an expression/type from the previous line.
+static bool starts_continuation(TSLexer *lexer) {
+  int32_t a = lexer->lookahead;
+  if (a == '&' || a == '|' || a == '*' || a == '/') {
+    return true;
+  }
+  if (a != '-' && a != '+' && a != '<' && a != '>' && a != '=' && a != '!' && a != '.') {
+    return false;
+  }
+  lexer->advance(lexer, false);
+  int32_t b = lexer->lookahead;
+  switch (a) {
+    case '-': return b == '>';
+    case '+': return b == '+';
+    case '<': return b == '>' || b == '<' || b == '=';
+    case '>': return b == '>' || b == '=';
+    case '=': return b == '=' || b == '>';
+    case '!': return b == '=';
+    case '.': return b == '|' || b == '&' || b == '^';
+  }
+  return false;
+}
+
 bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   Scanner *scanner = (Scanner *)payload;
 
@@ -187,6 +211,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
 
   int32_t col;
   bool hit_eof;
+  bool marked = false;
 
   if (scanner->has_pending_column) {
     // Continuing a multi-level DEDENT sequence measured by an earlier call;
@@ -248,6 +273,17 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
       return true;
     }
 
+    if (!hit_eof && crossed_newline && col > scanner->indents[scanner->indent_len - 1]) {
+      // A deeper-indented line that opens with a binary/continuation
+      // operator (`->`, `++`, `&`, ...) continues the previous logical
+      // line rather than starting a statement. Mark the token end first
+      // (we are about to peek past the lookahead), then refuse: the
+      // newline and indentation are consumed as whitespace extras.
+      lexer->mark_end(lexer);
+      marked = true;
+      if (starts_continuation(lexer)) return false;
+    }
+
     if (!hit_eof && !crossed_newline) {
       // No newline was actually crossed: we are sitting directly at real
       // content immediately after whatever the previous token already
@@ -257,7 +293,12 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
       return false;
     }
 
-    if (newline_valid) {
+    // After a block-opening `:` both NEWLINE (empty body) and INDENT are valid;
+    // a deeper next line means the body exists, so INDENT wins.
+    bool indent_wins = valid_symbols[INDENT] && !hit_eof &&
+      col > scanner->indents[scanner->indent_len - 1];
+
+    if (newline_valid && !indent_wins) {
       // Real content (or true EOF) was found, and this scan is allowed to
       // close out the *current* statement/line with a plain NEWLINE. That
       // must happen before any INDENT/DEDENT resolution against what
@@ -289,7 +330,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
         scanner->pending_column = hit_eof ? EOF_SENTINEL : col;
       }
       if (hit_eof) scanner->eof_newline_done = true;
-      lexer->mark_end(lexer);
+      if (!marked) lexer->mark_end(lexer);
       lexer->result_symbol = NEWLINE;
       return true;
     }
@@ -304,7 +345,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
       // below: only keep pending state set while more levels remain.
       scanner->has_pending_column = scanner->indent_len > 1;
       scanner->pending_column = EOF_SENTINEL;
-      lexer->mark_end(lexer);
+      if (!marked) lexer->mark_end(lexer);
       lexer->result_symbol = DEDENT;
       return true;
     }
@@ -319,7 +360,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
     if (scanner->indent_len >= MAX_INDENTS) return false;
     scanner->indents[scanner->indent_len++] = (uint16_t)col;
     scanner->has_pending_column = false;
-    lexer->mark_end(lexer);
+    if (!marked) lexer->mark_end(lexer);
     lexer->result_symbol = INDENT;
     return true;
   }
@@ -339,7 +380,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
     int32_t new_top = scanner->indents[scanner->indent_len - 1];
     scanner->has_pending_column = col < new_top;
     scanner->pending_column = col;
-    lexer->mark_end(lexer);
+    if (!marked) lexer->mark_end(lexer);
     lexer->result_symbol = DEDENT;
     return true;
   }
