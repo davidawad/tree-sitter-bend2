@@ -52,6 +52,9 @@ typedef struct {
   uint16_t indent_len;
   bool has_pending_column;
   int32_t pending_column;
+  // Set once the zero-width EOF NEWLINE has been emitted. Without it the
+  // grammar's `repeat1(_newline)` loops forever at EOF (dot-1mwd6g).
+  bool eof_newline_done;
 } Scanner;
 
 static void scanner_init(Scanner *scanner) {
@@ -59,6 +62,7 @@ static void scanner_init(Scanner *scanner) {
   scanner->indents[0] = 0;
   scanner->has_pending_column = false;
   scanner->pending_column = 0;
+  scanner->eof_newline_done = false;
 }
 
 void *tree_sitter_bend2_external_scanner_create(void) {
@@ -76,6 +80,7 @@ unsigned tree_sitter_bend2_external_scanner_serialize(void *payload, char *buffe
   unsigned size = 0;
 
   buffer[size++] = (char)(scanner->has_pending_column ? 1 : 0);
+  buffer[size++] = (char)(scanner->eof_newline_done ? 1 : 0);
 
   memcpy(&buffer[size], &scanner->pending_column, sizeof(int32_t));
   size += sizeof(int32_t);
@@ -97,6 +102,7 @@ void tree_sitter_bend2_external_scanner_deserialize(void *payload, const char *b
 
   unsigned pos = 0;
   scanner->has_pending_column = buffer[pos++] != 0;
+  scanner->eof_newline_done = buffer[pos++] != 0;
 
   memcpy(&scanner->pending_column, &buffer[pos], sizeof(int32_t));
   pos += sizeof(int32_t);
@@ -177,6 +183,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
   if (!want_newline_family) return false;
 
   bool newline_valid = valid_symbols[NEWLINE];
+  if (scanner->eof_newline_done && lexer->eof(lexer)) newline_valid = false;
 
   int32_t col;
   bool hit_eof;
@@ -281,6 +288,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
         scanner->has_pending_column = true;
         scanner->pending_column = hit_eof ? EOF_SENTINEL : col;
       }
+      if (hit_eof) scanner->eof_newline_done = true;
       lexer->mark_end(lexer);
       lexer->result_symbol = NEWLINE;
       return true;

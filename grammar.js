@@ -565,6 +565,8 @@ module.exports = grammar({
     // Statement terminator: one or more physical newlines, collapsing any
     // number of standalone comment/blank lines in between (see scanner.c).
     // ---------------------------------------------------------------
+    // (The scanner emits the zero-width EOF NEWLINE only once, so this
+    // repeat1 terminates at EOF -- dot-1mwd6g.)
     _nl: $ => repeat1($._newline),
   },
 });

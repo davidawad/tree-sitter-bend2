@@ -1,0 +1,34 @@
+================================================================================
+imports at EOF with trailing newline (hang regression, dot-1mwd6g)
+================================================================================
+import Base
+import equal as M
+
+---
+
+(source_file
+  (import_statement
+    path: (identifier))
+  (import_statement
+    path: (identifier)
+    alias: (identifier)))
+
+================================================================================
+import at EOF with no trailing newline
+================================================================================
+import Base
+def f():
+  x
+import A
+---
+
+(source_file
+  (import_statement
+    path: (identifier))
+  (def_declaration
+    name: (identifier)
+    (statement
+      (expression_statement
+        (identifier))))
+  (import_statement
+    path: (identifier)))
