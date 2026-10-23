@@ -15,22 +15,26 @@
 // entirely, rather than fighting it with GLR conflicts and dynamic
 // precedence.
 
+// Type formers (`->`, `&`) sit just above comparison so that a type argument
+// like `IO<Socket & String>` reduces the pair before `>` is considered as a
+// comparison (see the `_type_argument` conflict below).
 const PREC = {
-  CALL: 20,
-  INDEX: 20,
-  UNARY_GLUED: 19,
-  MUL: 12,
-  ADD: 11,
-  SHIFT: 10,
-  BITAND: 9,
-  BITXOR: 8,
-  BITOR: 7,
-  CONS: 6,
-  CMP: 5,
-  AND: 4,
-  OR: 3,
-  TYPE_PAIR: 2,
-  ARROW: 1,
+  CALL: 40,
+  INDEX: 40,
+  UNARY_GLUED: 38,
+  MUL: 24,
+  ADD: 22,
+  SHIFT: 20,
+  BITAND: 18,
+  BITXOR: 16,
+  BITOR: 14,
+  CONS: 14,
+  TYPE_PAIR: 13,
+  DEP_ARROW: 12,
+  ARROW: 11,
+  CMP: 10,
+  AND: 8,
+  OR: 6,
   LAMBDA: 0,
 };
 
@@ -63,6 +67,7 @@ module.exports = grammar({
     $._indent,
     $._dedent,
     $.block_comment,
+    $._shift_right,
   ],
 
   word: $ => $.identifier,
@@ -77,6 +82,7 @@ module.exports = grammar({
     [$.parallel_let_statement, $._term],
     [$.lambda_expression],
     [$._type_argument, $.binary_expression],
+    [$._type_argument, $.lambda_expression, $.binary_expression],
     [$._term, $.type_application],
   ],
 
@@ -148,9 +154,12 @@ module.exports = grammar({
       $._name,
       $.relative_path,
       $.hash_path,
+      $.package_path,
     ),
 
     relative_path: $ => token(seq(choice('./', '../'), /[^\s]+/)),
+    // `bend-lint-rules@0.1.1.0/no_unused/imports.bend`
+    package_path: $ => token(seq(/[a-zA-Z0-9_.-]+/, '@', /[^\s]+/)),
     hash_path: $ => token(seq('0x', /[0-9a-fA-F]+/, '/', /[^\s]+/)),
 
     // ---------------------------------------------------------------
@@ -186,7 +195,7 @@ module.exports = grammar({
     ),
 
     constructor_definition: $ => seq(
-      field('name', $.identifier),
+      field('name', $._name),
       '{', commaSep($.field_definition), '}',
       $._nl,
     ),
@@ -215,7 +224,10 @@ module.exports = grammar({
       optional(seq(':', field('type', $._term))),
     ),
 
-    _def_body_item: $ => choice($.statement, $.foreign_import_statement),
+    // `for`/`exs` lines also open type-level defs (`def P(x: T) -> Type:`).
+    _def_body_item: $ => choice(
+      $.statement, $.foreign_import_statement, $.for_clause, $.exs_clause,
+    ),
 
     foreign_import_statement: $ => seq('import', $.string_literal, $._nl),
 
@@ -315,7 +327,8 @@ module.exports = grammar({
 
     case_clause: $ => seq(
       'case', field('pattern', repeat1($._pattern)), ':',
-      block($, $.statement),
+      // Body on the following indented lines, or inline (`case P{}: {==}`).
+      choice(block($, $.statement), $.statement),
     ),
 
     // ---------------------------------------------------------------
@@ -335,9 +348,15 @@ module.exports = grammar({
     ),
 
     bind_statement: $ => seq(
-      optional(field('quantity', choice('+', '-'))),
-      field('name', $.identifier), ':', field('type', $._term), '<-',
-      field('value', $._term), $._nl,
+      choice(
+        seq(
+          optional(field('quantity', choice('+', '-'))),
+          field('name', $.identifier), ':', field('type', $._term),
+        ),
+        // `Unit <- IO.pure(...)`: result type only, binder discarded.
+        field('type', $._term),
+      ),
+      '<-', field('value', $._term), $._nl,
     ),
 
     do_let_statement: $ => prec(2, seq(
@@ -412,7 +431,17 @@ module.exports = grammar({
       field('name', $._name), '<', commaSep1($._type_argument), '>',
     )),
 
-    _type_argument: $ => prec(PREC.CMP, $._term),
+    _type_argument: $ => choice(
+      prec(PREC.CMP, $._term),
+      alias($._type_argument_lambda, $.lambda_expression),
+    ),
+
+    // `Sigma<&2, &2, A, s => P(s)>`: a lambda whose body runs up to the `>`
+    // that closes the enclosing type application.
+    _type_argument_lambda: $ => prec.right(PREC.LAMBDA, seq(
+      optional('+'), field('param', $.identifier), '=>',
+      field('body', $._type_argument),
+    )),
 
     // `IO(Unit)` -- a type constructor applied via ordinary call syntax
     // rather than `<...>`. Confirmed against real Bend 2 source: the same
@@ -428,7 +457,7 @@ module.exports = grammar({
       field('domain', $._term), '->', field('codomain', $._term),
     )),
 
-    dependent_function_type: $ => prec.right(PREC.ARROW, seq(
+    dependent_function_type: $ => prec.right(PREC.DEP_ARROW, seq(
       '@', optional(choice('-', '+', '~')), field('name', $.identifier), ':', field('domain', $._term),
       '->', field('codomain', $._term),
     )),
@@ -437,7 +466,7 @@ module.exports = grammar({
       field('left', $._term), '&', field('right', $._term),
     )),
 
-    dependent_pair_type: $ => prec.right(PREC.ARROW, seq(
+    dependent_pair_type: $ => prec.right(PREC.DEP_ARROW, seq(
       '&', field('name', $.identifier), ':', field('domain', $._term),
       '->', field('codomain', $._term),
     )),
@@ -480,6 +509,7 @@ module.exports = grammar({
       $.tuple_expression,
       $.paren_expression,
       $.annotated_expression,
+      $.braced_annotation,
       $.constructor_expression,
       $.lambda_expression,
       $.call_expression,
@@ -514,6 +544,9 @@ module.exports = grammar({
     )),
 
     paren_expression: $ => seq('(', $._term, ')'),
+
+    // `{term : Type}` -- a braced type ascription.
+    braced_annotation: $ => seq('{', $._term, ':', $._term, '}'),
 
     annotated_expression: $ => seq('(', $._term, ':', $._term, ')'),
 
@@ -560,11 +593,10 @@ module.exports = grammar({
       prec.left(PREC.BITXOR, seq($._term, '.^.', $._term)),
       prec.left(PREC.BITAND, seq($._term, '.&.', $._term)),
       prec.left(PREC.SHIFT, seq($._term, '<<', $._term)),
-      // NOTE: the right shift `>>` is deliberately NOT a token: nested type
-      // applications (`List<&2, Maybe<&1, A>>`) must close with two plain `>`
-      // tokens, and the lexer cannot tell the two uses apart. Known
-      // limitation (dot-1mwd6g): `(x >> 4n)` does not parse.
-      // prec.left(PREC.SHIFT, seq($._term, '>>', $._term)),
+      // The right shift is an external token (scanner.c): only ` >> ` with
+      // whitespace on both sides counts, so that nested type applications
+      // (`List<&2, Maybe<&1, A>>`) still close with two plain `>` tokens.
+      prec.left(PREC.SHIFT, seq($._term, alias($._shift_right, '>>'), $._term)),
       prec.left(PREC.ADD, seq($._term, choice('+', '-'), $._term)),
       prec.left(PREC.MUL, seq($._term, choice('*', '/', '%'), $._term)),
       prec.left(PREC.CMP, seq($._term, '<&>', $._term)),

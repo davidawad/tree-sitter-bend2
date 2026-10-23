@@ -1,0 +1,166 @@
+================================================================================
+right shift versus nested type closers
+================================================================================
+def f(x: U32) -> IO(Maybe<List<U32>>):
+  (x >> 4n : U32)
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (call_expression
+      (identifier)
+      (argument
+        (type_application
+          (identifier)
+          (type_application
+            (identifier)
+            (identifier)))))
+    (statement
+      (expression_statement
+        (annotated_expression
+          (binary_expression
+            (identifier)
+            (nat_literal))
+          (identifier))))))
+
+================================================================================
+lambda inside type arguments
+================================================================================
+def f() -> Sigma<&2, &2, List<&2, Nat>, s => perm_steps(A, s)>:
+  x
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (type_application
+      (identifier)
+      (quantity)
+      (quantity)
+      (type_application
+        (identifier)
+        (quantity)
+        (identifier))
+      (lambda_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (argument
+            (identifier))
+          (argument
+            (identifier)))))
+    (statement
+      (expression_statement
+        (identifier)))))
+
+================================================================================
+type-level def body, braced annotation, package import, inline case, nameless bind
+================================================================================
+import bend-lint-rules@0.1.1.0/no_unused/imports.bend as Rule0
+
+def Mem(x: String) -> Type:
+  for +h: String
+  &xs: List<&2, String> -> {xs == x : String}
+
+def g(+init: T) -> IO(Unit):
+  +g = {M.Good{a} : M.Read}
+  match g:
+    case Tree.Group{o}: {==}
+  do IO<Unit>:
+    Unit <- IO.pure(Unit, x)
+    IO.pure(Unit, x)
+
+---
+
+(source_file
+  (import_statement
+    (package_path)
+    (identifier))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (kind_type)
+    (for_clause
+      (identifier)
+      (identifier))
+    (statement
+      (expression_statement
+        (dependent_pair_type
+          (identifier)
+          (type_application
+            (identifier)
+            (quantity)
+            (identifier))
+          (equality_type
+            (identifier)
+            (identifier)
+            (identifier))))))
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (call_expression
+      (identifier)
+      (argument
+        (identifier)))
+    (statement
+      (let_statement
+        (identifier)
+        (braced_annotation
+          (constructor_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (field_argument
+              (identifier)))
+          (qualified_identifier
+            (identifier)
+            (identifier)))))
+    (statement
+      (match_statement
+        (identifier)
+        (case_clause
+          (constructor_pattern
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (field_pattern
+              (binder_pattern
+                (identifier))))
+          (statement
+            (expression_statement
+              (reflexivity))))))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (bind_statement
+          (identifier)
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (identifier))
+              (argument
+                (identifier)))))))))

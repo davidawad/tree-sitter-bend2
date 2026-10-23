@@ -42,6 +42,7 @@ enum TokenType {
   INDENT,
   DEDENT,
   BLOCK_COMMENT,
+  SHIFT_RIGHT,
 };
 
 #define MAX_INDENTS 256
@@ -163,30 +164,6 @@ static bool scan_block_comment_token(TSLexer *lexer) {
   return true;
 }
 
-// True when the line content at the lookahead begins with an operator that
-// can only continue an expression/type from the previous line.
-static bool starts_continuation(TSLexer *lexer) {
-  int32_t a = lexer->lookahead;
-  if (a == '&' || a == '|' || a == '*' || a == '/') {
-    return true;
-  }
-  if (a != '-' && a != '+' && a != '<' && a != '>' && a != '=' && a != '!' && a != '.') {
-    return false;
-  }
-  lexer->advance(lexer, false);
-  int32_t b = lexer->lookahead;
-  switch (a) {
-    case '-': return b == '>';
-    case '+': return b == '+';
-    case '<': return b == '>' || b == '<' || b == '=';
-    case '>': return b == '>' || b == '=';
-    case '=': return b == '=' || b == '>';
-    case '!': return b == '=';
-    case '.': return b == '|' || b == '&' || b == '^';
-  }
-  return false;
-}
-
 bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   Scanner *scanner = (Scanner *)payload;
 
@@ -203,6 +180,25 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
     // position on a `false` return, so this is safe.
   }
 
+  // Right shift: ` >> ` with whitespace on both sides. `>>` glued to the
+  // previous token closes nested type arguments (`List<List<A>>`) instead.
+  if (valid_symbols[SHIFT_RIGHT] && (lexer->lookahead == ' ' || lexer->lookahead == '\t')) {
+    while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+      lexer->advance(lexer, true);
+    }
+    if (lexer->lookahead == '>') {
+      lexer->advance(lexer, false);
+      if (lexer->lookahead != '>') return false;
+      lexer->advance(lexer, false);
+      if (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+        lexer->mark_end(lexer);
+        lexer->result_symbol = SHIFT_RIGHT;
+        return true;
+      }
+      return false;
+    }
+  }
+
   bool want_newline_family = valid_symbols[NEWLINE] || valid_symbols[INDENT] || valid_symbols[DEDENT];
   if (!want_newline_family) return false;
 
@@ -211,7 +207,7 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
 
   int32_t col;
   bool hit_eof;
-  bool marked = false;
+  bool marked = false;  // (kept for the mark_end guards below)
 
   if (scanner->has_pending_column) {
     // Continuing a multi-level DEDENT sequence measured by an earlier call;
@@ -273,15 +269,13 @@ bool tree_sitter_bend2_external_scanner_scan(void *payload, TSLexer *lexer, cons
       return true;
     }
 
-    if (!hit_eof && crossed_newline && col > scanner->indents[scanner->indent_len - 1]) {
-      // A deeper-indented line that opens with a binary/continuation
-      // operator (`->`, `++`, `&`, ...) continues the previous logical
-      // line rather than starting a statement. Mark the token end first
-      // (we are about to peek past the lookahead), then refuse: the
+    if (!hit_eof && crossed_newline && !valid_symbols[INDENT] &&
+        col > scanner->indents[scanner->indent_len - 1]) {
+      // A deeper-indented line where no block can open is a continuation of
+      // the previous logical line (`->`/`++`/`&` operator lines, extra
+      // arguments of a parallel let, ...), not a new statement. Refuse: the
       // newline and indentation are consumed as whitespace extras.
-      lexer->mark_end(lexer);
-      marked = true;
-      if (starts_continuation(lexer)) return false;
+      return false;
     }
 
     if (!hit_eof && !crossed_newline) {

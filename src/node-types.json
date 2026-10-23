@@ -20,6 +20,10 @@
           "named": true
         },
         {
+          "type": "braced_annotation",
+          "named": true
+        },
+        {
           "type": "call_expression",
           "named": true
         },
@@ -156,6 +160,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -298,6 +306,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -429,6 +441,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -566,6 +582,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -697,6 +717,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -850,6 +874,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -990,6 +1018,10 @@
           "named": true
         },
         {
+          "type": "braced_annotation",
+          "named": true
+        },
+        {
           "type": "call_expression",
           "named": true
         },
@@ -1114,7 +1146,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -1150,6 +1182,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -1284,6 +1320,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -1437,6 +1477,149 @@
     }
   },
   {
+    "type": "braced_annotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotated_expression",
+          "named": true
+        },
+        {
+          "type": "array_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
+        {
+          "type": "dependent_function_type",
+          "named": true
+        },
+        {
+          "type": "dependent_pair_type",
+          "named": true
+        },
+        {
+          "type": "either_type",
+          "named": true
+        },
+        {
+          "type": "equality_type",
+          "named": true
+        },
+        {
+          "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "gpu_call_expression",
+          "named": true
+        },
+        {
+          "type": "hole",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "inequality_type",
+          "named": true
+        },
+        {
+          "type": "kind_type",
+          "named": true
+        },
+        {
+          "type": "lambda_expression",
+          "named": true
+        },
+        {
+          "type": "list_expression",
+          "named": true
+        },
+        {
+          "type": "nat_literal",
+          "named": true
+        },
+        {
+          "type": "pair_type",
+          "named": true
+        },
+        {
+          "type": "paren_expression",
+          "named": true
+        },
+        {
+          "type": "qualified_identifier",
+          "named": true
+        },
+        {
+          "type": "quantity",
+          "named": true
+        },
+        {
+          "type": "reflexivity",
+          "named": true
+        },
+        {
+          "type": "reusable_type",
+          "named": true
+        },
+        {
+          "type": "rewrite_expression",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_application",
+          "named": true
+        },
+        {
+          "type": "u32_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -1454,6 +1637,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -1693,6 +1880,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -1947,6 +2138,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "qualified_identifier",
+            "named": true
           }
         ]
       }
@@ -2054,6 +2249,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -2180,6 +2379,14 @@
       "required": true,
       "types": [
         {
+          "type": "exs_clause",
+          "named": true
+        },
+        {
+          "type": "for_clause",
+          "named": true
+        },
+        {
           "type": "foreign_import_statement",
           "named": true
         },
@@ -2216,6 +2423,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -2350,6 +2561,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -2503,6 +2718,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -2634,6 +2853,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -2801,6 +3024,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -2965,6 +3192,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -3096,6 +3327,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -3236,6 +3471,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -3401,6 +3640,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -3532,6 +3775,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -3675,6 +3922,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -3809,6 +4060,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -3940,6 +4195,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -4080,6 +4339,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -4247,6 +4510,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -4384,6 +4651,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -4551,6 +4822,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -4757,6 +5032,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -4916,6 +5195,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -5090,6 +5373,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -5221,6 +5508,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -5361,6 +5652,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -5535,6 +5830,10 @@
             "named": true
           },
           {
+            "type": "package_path",
+            "named": true
+          },
+          {
             "type": "qualified_identifier",
             "named": true
           },
@@ -5568,6 +5867,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -5702,6 +6005,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -5845,6 +6152,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -5979,6 +6290,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -6110,6 +6425,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -6253,6 +6572,10 @@
           "named": true
         },
         {
+          "type": "braced_annotation",
+          "named": true
+        },
+        {
           "type": "call_expression",
           "named": true
         },
@@ -6389,6 +6712,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -6604,6 +6931,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -6735,6 +7066,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -6875,6 +7210,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -7077,6 +7416,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -7283,6 +7626,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -7414,6 +7761,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -7611,6 +7962,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -7748,6 +8103,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -7910,6 +8269,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -8065,6 +8428,10 @@
           "named": true
         },
         {
+          "type": "braced_annotation",
+          "named": true
+        },
+        {
           "type": "call_expression",
           "named": true
         },
@@ -8201,6 +8568,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -8348,6 +8719,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -8479,6 +8854,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -8712,6 +9091,10 @@
           "named": true
         },
         {
+          "type": "braced_annotation",
+          "named": true
+        },
+        {
           "type": "call_expression",
           "named": true
         },
@@ -8914,7 +9297,7 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "annotated_expression",
@@ -8926,6 +9309,10 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "braced_annotation",
           "named": true
         },
         {
@@ -9065,6 +9452,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -9236,6 +9627,10 @@
             "named": true
           },
           {
+            "type": "braced_annotation",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -9383,6 +9778,10 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "braced_annotation",
             "named": true
           },
           {
@@ -9686,6 +10085,10 @@
     "named": false
   },
   {
+    "type": ">>",
+    "named": false
+  },
+  {
     "type": "?",
     "named": false
   },
@@ -9793,6 +10196,10 @@
   },
   {
     "type": "nat_zero_pattern",
+    "named": true
+  },
+  {
+    "type": "package_path",
     "named": true
   },
   {
