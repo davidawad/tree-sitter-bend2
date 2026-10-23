@@ -1,0 +1,61 @@
+================================================================================
+relative import with parent directory
+================================================================================
+import ../io/file.bend as F
+import ./local.bend
+
+---
+
+(source_file
+  (import_statement
+    (relative_path)
+    (identifier))
+  (import_statement
+    (relative_path)))
+
+================================================================================
+quantity-annotated law binders
+================================================================================
+law l:
+  for -A: Type
+  for ~B: Data
+  for +n: Nat
+  A
+
+---
+
+(source_file
+  (law_declaration
+    (identifier)
+    (for_clause
+      (identifier)
+      (kind_type))
+    (for_clause
+      (identifier)
+      (kind_type))
+    (for_clause
+      (identifier)
+      (identifier))
+    (claim_statement
+      (identifier))))
+
+================================================================================
+newlines inside call arguments
+================================================================================
+def f():
+  g(a,
+    b)
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (statement
+      (expression_statement
+        (call_expression
+          (identifier)
+          (argument
+            (identifier))
+          (argument
+            (identifier)))))))

@@ -53,6 +53,7 @@ module.exports = grammar({
 
   extras: $ => [
     /[ \t]/,
+    /\r?\n/,
     $.comment,
     $.block_comment,
   ],
@@ -146,7 +147,7 @@ module.exports = grammar({
       $.hash_path,
     ),
 
-    relative_path: $ => token(seq('./', /[^\s]+/)),
+    relative_path: $ => token(seq(choice('./', '../'), /[^\s]+/)),
     hash_path: $ => token(seq('0x', /[0-9a-fA-F]+/, '/', /[^\s]+/)),
 
     // ---------------------------------------------------------------
@@ -218,7 +219,8 @@ module.exports = grammar({
     _law_line: $ => choice($.for_clause, $.exs_clause, $.claim_statement),
 
     for_clause: $ => seq(
-      'for', field('name', $.identifier), ':', field('type', $._type),
+      'for', optional(field('quantity', choice('-', '+', '~'))),
+      field('name', $.identifier), ':', field('type', $._type),
       optional(seq('where', field('condition', $._term))),
       $._nl,
     ),

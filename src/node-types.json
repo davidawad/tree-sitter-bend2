@@ -3375,6 +3375,24 @@
           }
         ]
       },
+      "quantity": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "~",
+            "named": false
+          }
+        ]
+      },
       "type": {
         "multiple": false,
         "required": true,
