@@ -160,21 +160,29 @@ module.exports = grammar({
     unsafe_annotation: $ => '@unsafe',
 
     type_declaration: $ => seq(
-      'type', field('name', $.identifier),
+      'type', field('name', $._name),
       optional($.type_parameters),
       optional(seq('is', field('kind', $._term))),
       ':',
       block($, $.constructor_definition),
     ),
 
-    type_parameters: $ => seq(
-      '<', commaSep1($.type_parameter), '>',
+    type_parameters: $ => choice(
+      seq('<', commaSep1($.type_parameter), '>'),
+      // `<-A: Data>`: the lexer reads `<-` as one token, so the first
+      // parameter's `-` quantity is folded into it.
+      seq('<-', $.type_parameter_unquantified, repeat(seq(',', $.type_parameter)), '>'),
+    ),
+
+    type_parameter_unquantified: $ => seq(
+      field('name', $.identifier),
+      optional(seq(':', field('bound', $._type_argument))),
     ),
 
     type_parameter: $ => seq(
       optional(choice('-', '+')),
       field('name', $.identifier),
-      optional(seq(':', field('bound', $._term))),
+      optional(seq(':', field('bound', $._type_argument))),
     ),
 
     constructor_definition: $ => seq(
@@ -184,6 +192,7 @@ module.exports = grammar({
     ),
 
     field_definition: $ => seq(
+      optional(field('quantity', choice('+', '-', '~'))),
       field('name', $.identifier), ':', field('type', $._term),
     ),
 
@@ -215,7 +224,7 @@ module.exports = grammar({
     // ---------------------------------------------------------------
 
     law_declaration: $ => seq(
-      'law', field('name', $.identifier), ':',
+      'law', field('name', $._name), ':',
       block($, $._law_line),
     ),
 
@@ -326,6 +335,7 @@ module.exports = grammar({
     ),
 
     bind_statement: $ => seq(
+      optional(field('quantity', choice('+', '-'))),
       field('name', $.identifier), ':', field('type', $._term), '<-',
       field('value', $._term), $._nl,
     ),
@@ -348,6 +358,8 @@ module.exports = grammar({
       $.nat_succ_pattern,
       $.nat_succ_reusable_pattern,
       $.u32_pattern,
+      $.char_pattern,
+      $.string_pattern,
       $.constructor_pattern,
       $.list_pattern,
       $.cons_pattern,
@@ -358,19 +370,19 @@ module.exports = grammar({
     wildcard_pattern: $ => '_',
     nat_zero_pattern: $ => '0n',
 
-    nat_succ_pattern: $ => prec(1, seq($.nat_literal, '+', $.identifier)),
+    nat_succ_pattern: $ => prec(1, seq($.nat_literal, '+', optional(choice('+', '-')), $.identifier)),
     nat_succ_reusable_pattern: $ => prec(1, seq($.nat_literal, '++', $.identifier)),
 
     u32_pattern: $ => $.u32_literal,
+    char_pattern: $ => $.char_literal,
+    string_pattern: $ => $.string_literal,
 
     constructor_pattern: $ => seq(
       field('name', $._name), '{', commaSep($.field_pattern), '}',
     ),
 
-    field_pattern: $ => seq(
-      optional(choice('+', '-')),
-      choice($.identifier, $.wildcard_pattern),
-    ),
+    // Fields may themselves be patterns (nested constructors, literals).
+    field_pattern: $ => $._pattern,
 
     list_pattern: $ => seq('[', commaSep($._pattern), ']'),
 

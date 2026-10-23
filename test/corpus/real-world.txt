@@ -131,3 +131,162 @@ def f():
           (binary_expression
             (identifier)
             (identifier)))))))
+
+================================================================================
+nested constructor, char and string patterns, multi-scrutinee
+================================================================================
+def f(a: A, b: B) -> U32:
+  match a b:
+    case Con{'.', Con{Lex.Tok{+k, _l}, Nil{}}} SCon{"x", rest}:
+      1
+    case 1n+ +p _other:
+      2
+
+---
+
+(source_file
+  (def_declaration
+    (identifier)
+    (parameter
+      (identifier)
+      (identifier))
+    (parameter
+      (identifier)
+      (identifier))
+    (identifier)
+    (statement
+      (match_statement
+        (identifier)
+        (identifier)
+        (case_clause
+          (constructor_pattern
+            (identifier)
+            (field_pattern
+              (char_pattern
+                (char_literal)))
+            (field_pattern
+              (constructor_pattern
+                (identifier)
+                (field_pattern
+                  (constructor_pattern
+                    (qualified_identifier
+                      (identifier)
+                      (identifier))
+                    (field_pattern
+                      (binder_pattern
+                        (identifier)))
+                    (field_pattern
+                      (binder_pattern
+                        (identifier)))))
+                (field_pattern
+                  (constructor_pattern
+                    (identifier))))))
+          (constructor_pattern
+            (identifier)
+            (field_pattern
+              (string_pattern
+                (string_literal)))
+            (field_pattern
+              (binder_pattern
+                (identifier))))
+          (statement
+            (expression_statement
+              (u32_literal))))
+        (case_clause
+          (nat_succ_pattern
+            (nat_literal)
+            (identifier))
+          (binder_pattern
+            (identifier))
+          (statement
+            (expression_statement
+              (u32_literal))))))))
+
+================================================================================
+quantified bind, field quantities, qualified type and law names, <-A params
+================================================================================
+type Word.Con<-p: Nat> is Data:
+  Follow{+ref: String}
+
+type Both<-A: Data, -B: Data> is Data:
+  Pair{a: A}
+
+law and.left:
+  for +x: Nat
+  x
+
+def main() -> IO(Unit):
+  do IO<Unit>:
+    +out : String <- R.exec(["a"])
+    IO.pure(out)
+
+---
+
+(source_file
+  (type_declaration
+    (qualified_identifier
+      (identifier)
+      (identifier))
+    (type_parameters
+      (type_parameter_unquantified
+        (identifier)
+        (identifier)))
+    (kind_type)
+    (constructor_definition
+      (identifier)
+      (field_definition
+        (identifier)
+        (identifier))))
+  (type_declaration
+    (identifier)
+    (type_parameters
+      (type_parameter_unquantified
+        (identifier)
+        (kind_type))
+      (type_parameter
+        (identifier)
+        (kind_type)))
+    (kind_type)
+    (constructor_definition
+      (identifier)
+      (field_definition
+        (identifier)
+        (identifier))))
+  (law_declaration
+    (qualified_identifier
+      (identifier)
+      (identifier))
+    (for_clause
+      (identifier)
+      (identifier))
+    (claim_statement
+      (identifier)))
+  (def_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (argument
+        (identifier)))
+    (statement
+      (do_statement
+        (type_application
+          (identifier)
+          (identifier))
+        (bind_statement
+          (identifier)
+          (identifier)
+          (call_expression
+            (qualified_identifier
+              (identifier)
+              (identifier))
+            (argument
+              (list_expression
+                (string_literal)))))
+        (expression_statement_line
+          (expression_statement
+            (call_expression
+              (qualified_identifier
+                (identifier)
+                (identifier))
+              (argument
+                (identifier)))))))))

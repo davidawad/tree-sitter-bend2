@@ -206,7 +206,8 @@ def main() -> IO(Unit):
           (constructor_pattern
             (identifier)
             (field_pattern
-              (identifier)))
+              (binder_pattern
+                (identifier))))
           (statement
             (expression_statement
               (annotated_expression
@@ -221,7 +222,8 @@ def main() -> IO(Unit):
           (constructor_pattern
             (identifier)
             (field_pattern
-              (identifier)))
+              (binder_pattern
+                (identifier))))
           (statement
             (expression_statement
               (annotated_expression
